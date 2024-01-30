@@ -1,18 +1,20 @@
 package pl.reqevo.starwarsapp.adapter
 
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import pl.reqevo.starwarsapp.R
 import pl.reqevo.starwarsapp.models.Person
 
-class PersonAdapter(private val personList: List<Person>) :
-    RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
+class PersonListAdapter(private val personList: List<Person>) :
+    RecyclerView.Adapter<PersonListAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,15 +36,20 @@ class PersonAdapter(private val personList: List<Person>) :
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var personCard = itemView.findViewById<MaterialCardView>(R.id.person_card)
-        var personName = itemView.findViewById<TextView>(R.id.person_name)
+        private val personCard: MaterialCardView =
+            itemView.findViewById(R.id.person_card)!!
+        private val personName: TextView = itemView.findViewById(R.id.person_name)!!
 
         fun bind(person: Person) {
             personName.text = person.name
 
-            personCard.setOnClickListener{
+            personCard.setOnClickListener {
                 Log.d("CLICK", "Person Name :${personName.text}")
-                findNavController(itemView).navigate(R.id.action_HomeFragment_to_DetailFragment)
+                val bundle: Bundle = bundleOf("person" to person)
+                findNavController(itemView).navigate(
+                    R.id.action_HomeFragment_to_DetailFragment,
+                    bundle
+                )
             }
         }
     }

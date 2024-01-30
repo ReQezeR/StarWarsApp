@@ -13,7 +13,11 @@
 
         <action
             android:id="@+id/action_HomeFragment_to_DetailFragment"
-            app:destination="@id/DetailFragment" />
+            app:destination="@id/DetailFragment" >
+<!--            <argument-->
+<!--                android:name="person"-->
+<!--                app:argType="bundle" />-->
+        </action>
     </fragment>
     <fragment
         android:id="@+id/DetailFragment"

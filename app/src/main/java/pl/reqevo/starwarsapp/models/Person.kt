@@ -1,7 +1,10 @@
 package pl.reqevo.starwarsapp.models
 
+import android.os.Parcelable
 import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Person(
     @JsonProperty("birth_year")
     val birthYear: String,
@@ -35,4 +38,4 @@ data class Person(
     val url: String,
     @JsonProperty("vehicles")
     val vehicles: List<String>
-)
+) : Parcelable

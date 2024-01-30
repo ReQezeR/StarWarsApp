@@ -2,15 +2,14 @@ package pl.reqevo.starwarsapp.ui.home
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pl.reqevo.starwarsapp.R
-import pl.reqevo.starwarsapp.adapter.PersonAdapter
+import pl.reqevo.starwarsapp.adapter.PersonListAdapter
 import pl.reqevo.starwarsapp.databinding.FragmentHomeBinding
 import pl.reqevo.starwarsapp.models.PersonResponse
 import pl.reqevo.starwarsapp.network.PersonApi
@@ -28,10 +27,14 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View{
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -42,7 +45,7 @@ class HomeFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.home_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        loadPersons()
+        loadPersons()//TODO cache data
     }
 
     override fun onDestroyView() {
@@ -65,7 +68,7 @@ class HomeFragment : Fragment() {
                     val personList = response.body()!!.results
 
                     Log.d("PERSONS", personList.toString())
-                    recyclerView.adapter = PersonAdapter(response.body()!!.results)
+                    recyclerView.adapter = PersonListAdapter(response.body()!!.results)
                 } else {
                     println("persons error : ${response.message()}")
                     Log.d("PERSONS", "persons error : ${response.message()}")
