@@ -6,9 +6,9 @@ data class PersonResponse(
     @JsonProperty("count")
     val count: Int,
     @JsonProperty("next")
-    val next: String,
+    val next: String?,
     @JsonProperty("previous")
-    val previous: Any?,
+    val previous: String?,
     @JsonProperty("results")
     val results: List<Person>
 )
