@@ -34,32 +34,21 @@ class DetailFragment : Fragment() {
 
         val name_tv = view.findViewById<TextView>(R.id.person_detail_name)
         name_tv.text = person.name
-        
-        val gender_tv = view.findViewById<View>(R.id.person_detail_gender)
-        gender_tv.findViewById<TextView>(R.id.custom_detail_label).text = "Gender"
-        gender_tv.findViewById<TextView>(R.id.custom_detail_value).text = person.gender
-
-        val birth_year_tv = view.findViewById<View>(R.id.person_detail_birth_year)
-        birth_year_tv.findViewById<TextView>(R.id.custom_detail_label).text = "Birth Year"
-        birth_year_tv.findViewById<TextView>(R.id.custom_detail_value).text = person.birthYear
-
-        val height_tv = view.findViewById<View>(R.id.person_detail_height)
-        height_tv.findViewById<TextView>(R.id.custom_detail_label).text = "Height"
-        height_tv.findViewById<TextView>(R.id.custom_detail_value).text = person.height
-
-        val mass_tv = view.findViewById<View>(R.id.person_detail_mass)
-        mass_tv.findViewById<TextView>(R.id.custom_detail_label).text = "Mass"
-        mass_tv.findViewById<TextView>(R.id.custom_detail_value).text = person.mass
-
-        val hair_color_tv = view.findViewById<View>(R.id.person_detail_hair_color)
-        hair_color_tv.findViewById<TextView>(R.id.custom_detail_label).text = "Hair"
-        hair_color_tv.findViewById<TextView>(R.id.custom_detail_value).text = person.hairColor
-
-        val skin_color_tv = view.findViewById<View>(R.id.person_detail_skin_color)
-        skin_color_tv.findViewById<TextView>(R.id.custom_detail_label).text = "Skin"
-        skin_color_tv.findViewById<TextView>(R.id.custom_detail_value).text = person.skinColor
 
 
+        this.setupDetail(view, R.id.person_detail_gender, "Gender", person.gender)
+        this.setupDetail(view, R.id.person_detail_birth_year, "Birth Year", person.birthYear)
+        this.setupDetail(view, R.id.person_detail_height, "Height", person.height)
+        this.setupDetail(view, R.id.person_detail_mass, "Mass", person.mass)
+        this.setupDetail(view, R.id.person_detail_hair_color, "Hair Color", person.hairColor)
+        this.setupDetail(view, R.id.person_detail_skin_color, "Skin Color", person.skinColor)
+    }
+
+    private fun setupDetail(view: View, viewElementId: Int, label: String, value: String): View {
+        val viewElement = view.findViewById<View>(viewElementId)
+        viewElement.findViewById<TextView>(R.id.custom_detail_label).text = label
+        viewElement.findViewById<TextView>(R.id.custom_detail_value).text = value
+        return viewElement
     }
 
     override fun onDestroyView() {
