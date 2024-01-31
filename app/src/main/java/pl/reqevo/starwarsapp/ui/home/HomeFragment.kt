@@ -68,25 +68,16 @@ class HomeFragment : Fragment() {
                     val personList = response.body()!!.results
 
                     Log.d("PERSONS", personList.toString())
-                    recyclerView.adapter = PersonListAdapter(response.body()!!.results)
+                    recyclerView.adapter = PersonListAdapter(personList)
                 } else {
                     println("persons error : ${response.message()}")
-                    Log.d("PERSONS", "persons error : ${response.message()}")
-                    //TODO
-//                    Toast.makeText(
-//                        this@HomeFragment,
-//                        "Something went wrong ${response.message()}",
-//                        Toast.LENGTH_LONG
-//                    ).show()
+                    Log.d("PERSONS", "persons response error : ${response.message()}")
 
                 }
             }
 
             override fun onFailure(call: Call<PersonResponse>, t: Throwable) {
                 Log.d("PERSONS", "persons error : ${t.message.toString()}")
-                //TODO
-//                Toast.makeText(this@HomeFragment, "Something went wrong $t", Toast.LENGTH_SHORT)
-//                    .show()
             }
 
         })
