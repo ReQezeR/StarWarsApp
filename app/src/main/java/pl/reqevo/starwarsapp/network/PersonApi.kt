@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 interface PersonApi {
     @GET("people")
-    fun getPeople(@Query("page") page: Int): Call<PersonResponse>
+    fun getPeople(@Query("page") page: Int?): Call<PersonResponse>
 
     @GET("people/{id}/")
     fun getPerson(@Path("id") id: Int): Call<Person>

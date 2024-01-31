@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
 
     private fun loadPersons() {
         val personApi = RetrofitClient.getInstance().create(PersonApi::class.java)
-        val result = personApi.getPeople()
+        val result = personApi.getPeople(null)
 
         result.enqueue(object : Callback<PersonResponse> {
             override fun onResponse(
